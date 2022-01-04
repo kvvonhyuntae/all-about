@@ -96,7 +96,7 @@ df_index_with_country_and_capital
 ```
 ------------------
 ## pandas 데이터 파일 입출력
-###지원하는 파일유형
+### 지원하는 파일유형
 - csv (모든 text파일 연결에 사용)
 - excel()
 - sql (모든 데이터베이스 연결에 사용)
