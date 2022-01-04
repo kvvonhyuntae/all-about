@@ -1,4 +1,4 @@
-# Pandas -1 / 데이터 구조(Series, DataFrame)
+# Pandas -1 / 데이터 구조(Series, DataFrame), 데이터 파일 입출력
 ## pandas의 특징
 - Numpy를 내부적으로 활용하기 때문에 Nump의 특징을 그대로 가진다.
 - 데이터 분석에 특화된 데이터 구조를 제공하고 다양한 데이터 분석 함수를 제공한다.
@@ -94,3 +94,22 @@ df_index_with_country
 df_index_with_country_and_capital = df.set_index(['Country', 'Capital'])
 df_index_with_country_and_capital
 ```
+------------------
+## pandas 데이터 파일 입출력
+###지원하는 파일유형
+- csv (모든 text파일 연결에 사용)
+- excel()
+- sql (모든 데이터베이스 연결에 사용)
+- hdf5
+- json
+- html
+- pickle
+
+데이터를 입력할 경우 'pd.read_파일 유형('파일 경로)'를 사용하며 출력의 경우 df.to_파일유형을 사용한다
+
+```python
+pd.read_파일 유형('파일 경로') #데이터 불러오기
+
+df.to_파일유형 #데이터 저장
+```
+
