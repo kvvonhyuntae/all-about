@@ -47,3 +47,28 @@ df.iloc[:,:] > 200000000
 df[df['Population'] > 200000000] #데이터 프레임에서 ture인 행만 데이터 프레임으로 출력
 ```
 ## 4. 삭제
+### 1) 행삭제
+1. 단일 행 삭제
+```python
+df.drop(1)
+```
+2. 복수행 삭제
+```python
+df.drop([0, 1])
+```
+### 3) Column 삭제(열삭제)
+- axis = 1
+1. 단일 열 삭제
+```python
+df.drop('Country', axis=1)
+```
+2. 복수 열 삭제 
+```python
+df.drop(['Country', 'Population'], axis=1)
+```
+참조) Series 삭제
+```python
+s.drop(['a', 'c'])
+# s = s.drop(['a', 'c']) 
+# 삭제한 결과를 사용하고 싶다면 다시 변수로 선언해주어야 한다
+```
