@@ -46,3 +46,40 @@ network.compile(optimizer='rmsprop',
 likelihood : 우도, 그럴싸함, 모델이 얼마나 데이터를 잘 표현하고 있는지를 나타내는 지표
 
 ##3. 데이터 전처리
+훈련을 시작하기전에 데이터를 네트워크 크기에 맞는 크기로 바꾸고 모든값을 0과 1사이로 스케일을 조정한다.
+```python
+train_images = train_images.reshape((60000, 28 * 28))
+train_images = train_images.astype('float32') / 255 #MinMaxScaling
+
+test_images = test_images.reshape((10000, 28 * 28))
+test_images = test_images.astype('float32') / 255
+```
+<br> [0, 255] 사이의 값인 uint8 타입의 (60000, 28, 28) 크기를 가진 배열로 저장되어있는 훈련 이미지를</br>
+0과 1시이의 값을 가지는 float32 타입의 (60000, 28 * 28) 크기의 배열로 변경.
+
+또한 레이블을 범주형으로 인코딩 해야함.(뒷부분 참고)
+```python
+from tensorflow.keras.utils import to_categorical
+
+train_labels = to_categorical(train_labels)
+test_labels = to_categorical(test_labels)
+
+train_labels.shape
+#출력 (60000, 10)
+```
+```python
+train_labels[:10]
+#출력 array([[0., 0., 0., 0., 0., 1., 0., 0., 0., 0.],
+#       [1., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+#       [0., 0., 0., 0., 1., 0., 0., 0., 0., 0.],
+#       [0., 1., 0., 0., 0., 0., 0., 0., 0., 0.],
+#       [0., 0., 0., 0., 0., 0., 0., 0., 0., 1.],
+#       [0., 0., 1., 0., 0., 0., 0., 0., 0., 0.],
+#       [0., 1., 0., 0., 0., 0., 0., 0., 0., 0.],
+#       [0., 0., 0., 1., 0., 0., 0., 0., 0., 0.],
+#       [0., 1., 0., 0., 0., 0., 0., 0., 0., 0.],
+#       [0., 0., 0., 0., 1., 0., 0., 0., 0., 0.]], dtype=float32)
+```
+
+## 4. 학습
+케라스에서는 fit 메소드를 호출해서 훈련데이터에 모델을 학습시킨다.
